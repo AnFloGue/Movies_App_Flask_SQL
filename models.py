@@ -1,13 +1,16 @@
-class User:
-    def __init__(self, user_id, name):
-        self.user_id = user_id
-        self.name = name
-        self.movies = []
+from flask_sqlalchemy import SQLAlchemy
 
-class Movie:
-    def __init__(self, movie_id, name, director, year, rating):
-        self.movie_id = movie_id
-        self.name = name
-        self.director = director
-        self.year = year
-        self.rating = rating
+db = SQLAlchemy()
+
+class User(db.Model):
+    user_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    movies = db.relationship('Movie', backref='user', lazy=True)
+
+class Movie(db.Model):
+    movie_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    director = db.Column(db.String(120), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Float, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)

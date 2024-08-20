@@ -1,12 +1,18 @@
 from flask_sqlalchemy import SQLAlchemy
 from datamanager.data_manager_interface import DataManagerInterface
 from models import User
-
+import os
 
 class SQLiteDataManager(DataManagerInterface):
-    def __init__(self, app):
-        self.db = SQLAlchemy(app)
-        self.db.create_all()
+    def __init__(self, app, db_path):
+        self.app = app
+        self.app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+        self.db = SQLAlchemy(self.app)
+        
+        # Ensure the database file is created
+        if not os.path.exists(db_path):
+            with self.app.app_context():
+                self.db.create_all()
 
     def get_all_users(self):
         return User.query.all()
