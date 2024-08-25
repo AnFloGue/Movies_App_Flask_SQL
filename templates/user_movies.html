@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Movies - MovieWeb App</title>
-</head>
-<body>
-    <h1>{{ user.name }}'s Favorite Movies</h1>
-    <ul>
-        {% for movie in movies %}
-            <li>
-                {{ movie.name }} ({{ movie.year }}) - {{ movie.rating }}
-                <a href="/users/{{ user.user_id }}/update_movie/{{ movie.movie_id }}">Edit</a>
-                <a href="/users/{{ user.user_id }}/delete_movie/{{ movie.movie_id }}">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/users/{{ user.user_id }}/add_movie">Add Movie</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}{{ user.name }}'s Movies{% endblock %}
+{% block content %}
+<h1 class="mb-4">{{ user.name }}'s Movies</h1>
+<ul class="list-group">
+    {% for movie in movies %}
+    <li class="list-group-item">
+        {{ movie.name }} ({{ movie.year }}) - {{ movie.director }} - {{ movie.rating }}/10
+    </li>
+    {% endfor %}
+</ul>
+<a href="/users/{{ user.id }}/add_movie" class="btn btn-primary mt-3">Add Movie</a>
+{% endblock %}
