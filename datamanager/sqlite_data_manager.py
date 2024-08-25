@@ -9,6 +9,8 @@ class SQLiteDataManager(DataManagerInterface):
         self.app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
         self.db = SQLAlchemy(self.app)
         
+        
+        
         # Ensure the database file is created
         if not os.path.exists(db_path):
             with self.app.app_context():
