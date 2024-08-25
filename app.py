@@ -11,7 +11,7 @@ def page_not_found(e):
 
 @app.route('/')
 def hello_world():
-    return "Welcome to MovieWeb App!"
+    return render_template('index.html')
 
 @app.route('/users')
 def list_users():
