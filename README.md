@@ -28,16 +28,18 @@ Using an SQLite database (`moviwebapp.db`) to store user and movie data.
 ## Movie Management
 
 ### Add a Movie
-`/users/<int:user_id>/add_movie` route allows adding a movie for a specific user.
+`/users/<int:user_id>/add_movie` 
 
 ### Delete a Movie
-`/users/<int:user_id>/delete_movie/<int:movie_id>` route allows deleting a movie.
+`/users/<int:user_id>/delete_movie/<int:movie_id>`
+
 
 ### Update a Movie
-`/users/<int:user_id>/update_movie/<int:movie_id>` route allows updating a movie.
+`/users/<int:user_id>/update_movie/<int:movie_id>`
+
 
 ### List All Movies
-`/users/<int:user_id>` route lists all movies for a specific user.
+`/users/<int:user_id>` 
 
 ## Data Source Management
 
